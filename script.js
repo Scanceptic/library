@@ -31,13 +31,17 @@ function bookDisplay(myLibrary) {
 		const bookRead = document.createElement("span");
 		const buttonRemove = document.createElement("button");
 		const buttonRead = document.createElement("button");
+		const buttonContainer = document.createElement("div");
+		buttonContainer.style.display = "flex";
+		buttonContainer.style.margin = "auto 5px 15px 5px";
+		buttonContainer.style.gap = "30px";
 		div.style.display = "flex";
 		div.style.flexDirection = "column";
-		div.style.justifyContent = "center";
+		//div.style.justifyContent = "center";
 		div.style.alignItems = "center";
 		div.style.backgroundColor = "gainsboro";
 		div.style.width = "200px";
-		div.style.height = "150px";
+		div.style.height = "200px";
 		div.style.border = "1px solid black";
 		div.style.margin = "10px";
 		div.setAttribute("id", `card${i}`);
@@ -65,8 +69,9 @@ function bookDisplay(myLibrary) {
 		div.appendChild(bookAuthor);
 		div.appendChild(bookPages);
 		div.appendChild(bookRead);
-		div.appendChild(buttonRead);
-		div.appendChild(buttonRemove);
+		buttonContainer.appendChild(buttonRead);
+		buttonContainer.appendChild(buttonRemove);
+		div.append(buttonContainer);
 		container.appendChild(div);
 	}
 }
