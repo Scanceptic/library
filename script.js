@@ -58,12 +58,12 @@ function bookDisplay(myLibrary) {
 			bookDisplay(myLibrary);
 		});
 		bookTitle.textContent = myLibrary[i].title;
-		bookAuthor.textContent = myLibrary[i].author;
-		bookPages.textContent = myLibrary[i].pages;
+		bookAuthor.textContent = `Author: ${myLibrary[i].author}`;
+		bookPages.textContent = `Page Count: ${myLibrary[i].pages}`;
 		if (myLibrary[i].read) {
-			bookRead.textContent = "Read";
+			bookRead.textContent = "Status: Read";
 		} else {
-			bookRead.textContent = "Unread";
+			bookRead.textContent = "Status: Unread";
 		}
 		div.appendChild(bookTitle);
 		div.appendChild(bookAuthor);
@@ -80,9 +80,6 @@ addBooktoLibrary("Tolkien", "Lord of the Rings", 455, false);
 addBooktoLibrary("Austen", "Pride and Prejudice", 377, true);
 addBooktoLibrary("Colfer", "Artemis Fowl", 274, true);
 bookDisplay(myLibrary);
-
-/* Form for entering book details */
-const form = document.createElement("form");
 
 /* Temp Button for adding new books */
 /* 
@@ -114,7 +111,11 @@ const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
 const closeButton = document.querySelector("dialog #closeButton");
 const confirmButton = document.querySelector("#confirmButton");
-const inputs = document.querySelectorAll("input");
+const inputTitle = document.querySelector("#title");
+const inputAuthor = document.querySelector("#author");
+const inputPages = document.querySelector("#pages");
+const inputRead = document.querySelector("#read");
+const form = document.querySelector("#dialog-container");
 // Show button opens dialog modally
 showButton.addEventListener("click", () => {
 	dialog.showModal();
@@ -124,7 +125,39 @@ closeButton.addEventListener("click", () => {
 	dialog.close();
 });
 // Confirm button closes dialog and adds book
+/*
 confirmButton.addEventListener("click", (event) => {
-	event.preventDefault(); // We don't want to submit this fake form
-	dialog.close(inputs.value); // Have to send the select box value here.
+	event.preventDefault(); // Dont submit to server
+	console.log(inputRead.value);
+	let readStatus = false;
+	if (inputRead.value === "read") {
+		console.log("True");
+		readStatus = true;
+	} else if (inputRead.value === "unread") {
+		console.log("False");
+		readStatus = false;
+	}
+	dialog.close(
+		addBooktoLibrary(
+			inputAuthor.value,
+			inputTitle.value,
+			inputPages.value,
+			readStatus
+		)
+	); // Make new book
+	bookDisplay(myLibrary);
 });
+*/
+form.addEventListener(
+	"submit",
+	(event) => {
+		const data = new FormData(form);
+		let output = "";
+		for (const entry of data) {
+			output = `${output}${entry[0]}=${entry[1]}\r`;
+		}
+		log.innerText = output;
+		event.preventDefault();
+	},
+	false
+);
