@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header, .footer {
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 150px;
+}
+
+.content {
+    padding: 100px;
+}
+
+.card-container {
+    display: grid;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+    width: 200px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.footer {
+    margin-top: auto;
+}
