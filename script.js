@@ -7,7 +7,7 @@ function Book(author, title, pages, read) {
 	this.pages = pages;
 	this.read = read;
 	this.changeStatus = function () {
-		this.read = !read;
+		this.read = !this.read;
 	};
 }
 
