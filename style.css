@@ -30,17 +30,6 @@ body {
     grid-template-rows: repeat(auto, 1fr);
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: gainsboro;
-    width: 200px;
-    height: 150px;
-    border: 1px solid black;
-}
-
 .footer {
     height: 100px;
     margin-top: auto;
