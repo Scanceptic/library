@@ -84,7 +84,8 @@ bookDisplay(myLibrary);
 /* Form for entering book details */
 const form = document.createElement("form");
 
-/* Button for adding new books */
+/* Temp Button for adding new books */
+/* 
 const btn = document.createElement("button");
 const content = document.querySelector(".content");
 const container = document.querySelector("#card-container");
@@ -97,7 +98,7 @@ btn.style.border = "none";
 btn.style.fontWeight = "700";
 btn.style.backgroundColor = "green";
 btn.style.color = "white";
-/* Temp function, replace with full form later */
+
 btn.addEventListener("click", () => {
 	let title = prompt("Title: ");
 	let author = prompt("Author: ");
@@ -106,4 +107,18 @@ btn.addEventListener("click", () => {
 	addBooktoLibrary(author, title, pages, read);
 	bookDisplay(myLibrary);
 });
+
 content.insertBefore(btn, container);
+*/
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+// Show button opens dialog modally
+showButton.addEventListener("click", () => {
+	dialog.showModal();
+});
+// Close button closes dialog
+closeButton.addEventListener("click", () => {
+	dialog.close();
+});
+

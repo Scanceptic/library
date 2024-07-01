@@ -39,3 +39,13 @@ body {
     height: 100px;
     margin-top: auto;
 }
+
+dialog {
+    width: 400px;
+}
+
+#dialog-container {
+    display: flex;
+    flex-direction: column;
+}
+
