@@ -112,7 +112,9 @@ content.insertBefore(btn, container);
 */
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
-const closeButton = document.querySelector("dialog button");
+const closeButton = document.querySelector("dialog #closeButton");
+const confirmButton = document.querySelector("#confirmButton");
+const inputs = document.querySelectorAll("input");
 // Show button opens dialog modally
 showButton.addEventListener("click", () => {
 	dialog.showModal();
@@ -121,4 +123,8 @@ showButton.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
 	dialog.close();
 });
-
+// Confirm button closes dialog and adds book
+confirmButton.addEventListener("click", (event) => {
+	event.preventDefault(); // We don't want to submit this fake form
+	dialog.close(inputs.value); // Have to send the select box value here.
+});
