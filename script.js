@@ -13,7 +13,7 @@ function addBooktoLibrary(author, title, pages, read) {
 }
 
 function bookDisplay(myLibrary) {
-	const container = document.querySelector("card-container");
+	const container = document.querySelector("#card-container");
 	const div = document.createElement("div");
 	const bookTitle = document.createElement("h3");
 	const bookAuthor = document.createElement("span");
@@ -30,7 +30,7 @@ function bookDisplay(myLibrary) {
 	for (let i = 0; i < myLibrary.length; i++) {
 		bookTitle.textContent = myLibrary[i].title;
 		bookAuthor.textContent = myLibrary[i].author;
-		bookPages.textContent = toString(myLibrary[i].pages);
+		bookPages.textContent = myLibrary[i].pages;
 		if (myLibrary[i].read) {
 			bookRead.textContent = "Read";
 		} else {
