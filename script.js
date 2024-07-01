@@ -6,6 +6,9 @@ function Book(author, title, pages, read) {
 	this.title = title;
 	this.pages = pages;
 	this.read = read;
+	this.changeStatus = function () {
+		this.read = !read;
+	};
 }
 
 function addBooktoLibrary(author, title, pages, read) {
@@ -14,18 +17,20 @@ function addBooktoLibrary(author, title, pages, read) {
 }
 
 function bookDisplay(myLibrary) {
-    const container = document.querySelector("#card-container");
+	const container = document.querySelector("#card-container");
 
-    while (container.firstChild){
-        container.removeChild(container.firstChild);
-    };
-        
+	while (container.firstChild) {
+		container.removeChild(container.firstChild);
+	}
+
 	for (let i = 0; i < myLibrary.length; i++) {
 		const div = document.createElement("div");
 		const bookTitle = document.createElement("h3");
 		const bookAuthor = document.createElement("span");
 		const bookPages = document.createElement("span");
 		const bookRead = document.createElement("span");
+		const buttonRemove = document.createElement("button");
+		const buttonRead = document.createElement("button");
 		div.style.display = "flex";
 		div.style.flexDirection = "column";
 		div.style.justifyContent = "center";
@@ -34,8 +39,20 @@ function bookDisplay(myLibrary) {
 		div.style.width = "200px";
 		div.style.height = "150px";
 		div.style.border = "1px solid black";
-        div.style.margin = "10px";
-		div.classList.add(`card${i}`);
+		div.style.margin = "10px";
+		div.setAttribute("id", `card${i}`);
+		buttonRemove.textContent = "Remove";
+		buttonRead.textContent = "Toggle Read Status";
+		buttonRemove.addEventListener("click", () => {
+			const card = document.querySelector(`#card${i}`);
+			card.remove();
+			myLibrary.splice(i, 1);
+			bookDisplay(myLibrary);
+		});
+		buttonRead.addEventListener("click", () => {
+			myLibrary[i].changeStatus();
+			bookDisplay(myLibrary);
+		});
 		bookTitle.textContent = myLibrary[i].title;
 		bookAuthor.textContent = myLibrary[i].author;
 		bookPages.textContent = myLibrary[i].pages;
@@ -48,6 +65,8 @@ function bookDisplay(myLibrary) {
 		div.appendChild(bookAuthor);
 		div.appendChild(bookPages);
 		div.appendChild(bookRead);
+		div.appendChild(buttonRead);
+		div.appendChild(buttonRemove);
 		container.appendChild(div);
 	}
 }
@@ -73,12 +92,13 @@ btn.style.border = "none";
 btn.style.fontWeight = "700";
 btn.style.backgroundColor = "green";
 btn.style.color = "white";
+/* Temp function, replace with full form later */
 btn.addEventListener("click", () => {
-    let title = prompt("Title: ");
-    let author = prompt("Author: ");
-    let pages = prompt("Number of pages: ");
-    let read = prompt("Read? T/F");
-    addBooktoLibrary(author, title, pages, read);
-    bookDisplay(myLibrary);
+	let title = prompt("Title: ");
+	let author = prompt("Author: ");
+	let pages = prompt("Number of pages: ");
+	let read = prompt("Read? T/F");
+	addBooktoLibrary(author, title, pages, read);
+	bookDisplay(myLibrary);
 });
 content.insertBefore(btn, container);
