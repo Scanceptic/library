@@ -60,7 +60,7 @@ function bookDisplay(myLibrary) {
 		bookTitle.textContent = myLibrary[i].title;
 		bookAuthor.textContent = `Author: ${myLibrary[i].author}`;
 		bookPages.textContent = `Page Count: ${myLibrary[i].pages}`;
-		if (myLibrary[i].read) {
+		if (myLibrary[i].read === "read") {
 			bookRead.textContent = "Status: Read";
 		} else {
 			bookRead.textContent = "Status: Unread";
@@ -148,16 +148,24 @@ confirmButton.addEventListener("click", (event) => {
 	bookDisplay(myLibrary);
 });
 */
+let log = "";
+
 form.addEventListener(
 	"submit",
 	(event) => {
-		const data = new FormData(form);
-		let output = "";
-		for (const entry of data) {
-			output = `${output}${entry[0]}=${entry[1]}\r`;
-		}
-		log.innerText = output;
 		event.preventDefault();
-	},
-	false
+		const data = new FormData(form);
+		console.log(data);
+		const title = data.get("title");
+		console.log(title);
+		const author = data.get("author");
+		console.log(author);
+		const pages = data.get("pages");
+		console.log(pages);
+		const read = data.get("read");
+		console.log(read);
+		addBooktoLibrary(author,title,pages,read);
+		bookDisplay(myLibrary);
+		dialog.close();
+	}
 );
